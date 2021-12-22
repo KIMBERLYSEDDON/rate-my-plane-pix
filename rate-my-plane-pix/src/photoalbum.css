@@ -11,10 +11,14 @@
     column-width: 25%;
     padding: 0 12px;
 }
+.pic:hover{
+    opacity: 90%;
+}
 /* .pic{
     border: 2px solid black;
 } */
 .up-vote{
+    font-weight: 900;
     color: white;
     position: absolute;
     bottom: 50px;
