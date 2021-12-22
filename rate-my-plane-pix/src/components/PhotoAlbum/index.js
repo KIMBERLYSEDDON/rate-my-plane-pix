@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IconButton } from '@material-ui/core';
+import { IconButton, Grid, Typography } from '@material-ui/core';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import CloseIcon from '@material-ui/icons/Close'
 import '../../photoalbum.css';
@@ -27,9 +27,12 @@ export default function PhotoAlbum({ photos }) {
                     <div key={index} onClick={() => getImg(photo.source)}>
                     <img src={photo.source} style={{width: '100%'}} alt="pic" />
                     </div>
-                    <IconButton aria-label={`info about `} className='up-vote'>
+                    <Grid container justify="flex-end" alignItems="flex-end">
+                    <IconButton variant="contained" aria-label={`info about `} className='up-vote'>
+                        <Typography>LIKES</Typography>
                   <ThumbUpOutlinedIcon />
                 </IconButton>
+                </Grid>
                     </div>
 
             })}

@@ -11,12 +11,14 @@
     column-width: 25%;
     padding: 0 12px;
 }
-.pic{
+/* .pic{
     border: 2px solid black;
-}
+} */
 .up-vote{
-    position: relative;
-    left: 20px;
+    color: white;
+    position: absolute;
+    bottom: 50px;
+    background-color: rgba(128, 128, 128, 0.068);
 }
 
 .model{
