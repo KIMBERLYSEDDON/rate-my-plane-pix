@@ -25,7 +25,7 @@ export default function PhotoAlbum({ photos }) {
             {photos.map((photo, index)=> {
                 return <div className="pic">
                     <div key={index} onClick={() => getImg(photo.source)}>
-                    <img className="pic"src={photo.source} style={{width: '100%'}} alt="pic" />
+                    <img className="pic" src={photo.source} style={{width: '100%'}} alt="pic" />
                     </div>
                     <Grid container justify="flex-end" alignItems="flex-end">
                         <IconButton variant="contained" color="primary" aria-label={`info about `} className='up-vote'>
