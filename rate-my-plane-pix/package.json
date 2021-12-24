@@ -2,6 +2,7 @@
   "name": "rate-my-plane-pix",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@fontsource/nanum-gothic": "^4.5.0",
     "@material-ui/core": "^4.12.3",
