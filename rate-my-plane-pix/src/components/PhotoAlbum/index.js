@@ -11,8 +11,12 @@ import Axios from 'axios';
 export default function PhotoAlbum({ photos }) {
 
     const [ likes, setLikes ] = useState(0)
-    function increaseLikes() {
-        setLikes(prevLikes => prevLikes + 1)
+    function increaseLikes(pic) {
+        
+        setLikes(prevLikes => prevLikes + 1);
+        let like = pic;
+        console.log("THIS", like)
+        
     }
     // const classes = useStyles();
     const [model, setModel] = useState(false);
@@ -33,12 +37,12 @@ export default function PhotoAlbum({ photos }) {
                     <div key={index} onClick={() => getImg(photo.source)}>
                     <img className="pic" src={photo.source} style={{width: '100%'}} alt="pic" />
                     </div>
-                    <Grid container justify="flex-end" alignItems="flex-end">
-                        <IconButton variant="contained" color="primary" aria-label={`info about `} className='up-vote' onClick={(e)=> increaseLikes(e.target)}>
+                    {/* <Grid container justify="flex-end" alignItems="flex-end"> */}
+                        <IconButton key={photo.source} id="like-btn" variant="contained" color="primary" aria-label={`info about `} className='up-vote' onClick={() => increaseLikes(photo.source)}>
                             <Typography>{likes}</Typography>
                             <ThumbUpOutlinedIcon />
                     </IconButton>
-                </Grid>
+                {/* </Grid> */}
                     </div>
 
             })}
