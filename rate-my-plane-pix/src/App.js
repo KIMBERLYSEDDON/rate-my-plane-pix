@@ -2,6 +2,7 @@ import React from "react";
 import PhotoAlbum from "./components/PhotoAlbum";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 import Header from "./components/Header";
+import UploadImage from "./components/UploadImage";
 import photos from "./photos";
 
 const theme = createTheme({
@@ -23,6 +24,7 @@ function App() {
     <ThemeProvider theme={theme}>
     <div>
     <Header />
+    <UploadImage />
     <PhotoAlbum photos={photos}/>
     </div>
     </ThemeProvider>

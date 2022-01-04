@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
     Grid,
     Paper,
-    Avatar,
     Typography,
     TextField,
     Button,
@@ -33,11 +32,43 @@ export default function UploadImage() {
   
        
     };
+    const paperStyle = { padding: "30px 20px", width: 300, margin: "20px auto" };
     return (
         <div>
-            <label>Caption:</label>
-            <input type="text" name="caption" />
-            <label></label>
+    <Grid>
+      <Paper elevation={20} style={paperStyle}>
+        <Grid align="center">
+          <h2>Submit a Pic</h2>
+          <Typography variant="caption">
+            Please fill out this form to begin your B*UCKET
+          </Typography>
+        </Grid>
+        {/* <form onSubmit={handleFormSubmit}> */}
+        <form>
+          <div>
+          <input type="file" name="avatar" onChange={(e)=> {
+            setImageSelected(e.target.files[0])
+            }} />
+            <Button size="small" onClick={uploadImage}>UPLOAD IMAGE</Button>
+            </div>
+            <TextField
+            // onChange={handleChange}
+            name="caption"
+            fullWidth
+            label="Photo Caption"
+          />
+          <Button
+            id="signupSubmit"
+            align="center"
+            type="submit"
+            variant="contained"
+            // style={submitStyle}
+          >
+            Sign Up
+          </Button>
+        </form>
+      </Paper>
+    </Grid>
         </div>
     )
 }
