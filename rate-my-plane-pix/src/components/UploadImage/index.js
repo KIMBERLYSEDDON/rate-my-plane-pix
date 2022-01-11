@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Grid,
     Paper,
@@ -32,39 +32,54 @@ export default function UploadImage() {
   
        
     };
+    const handleChange = (event) => {
+      const { name, value } = event.target;
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    };
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+      try {
+      Axios.post('http://localhost:3001/api/submit', {...formState}).then(()=>{
+        alert('Successful Submit!')
+      });
+    } catch (error) {
+      console.error(error)
+    }
+    };
+
     const paperStyle = { padding: "30px 20px", width: 300, margin: "20px auto" };
     return (
         <div>
     <Grid>
       <Paper elevation={20} style={paperStyle}>
         <Grid align="center">
-          <h2>Submit a Pic</h2>
-          <Typography variant="caption">
-            Please fill out this form to begin your B*UCKET
-          </Typography>
+          <h2 id="submit-pic-header">Submit a Pic</h2>
         </Grid>
-        {/* <form onSubmit={handleFormSubmit}> */}
-        <form>
+        <form onSubmit={handleFormSubmit}>
           <div>
           <input type="file" name="avatar" onChange={(e)=> {
             setImageSelected(e.target.files[0])
             }} />
-            <Button size="small" onClick={uploadImage}>UPLOAD IMAGE</Button>
+            <Button className="robo-text" size="small" onClick={uploadImage}>UPLOAD IMAGE</Button>
             </div>
             <TextField
-            // onChange={handleChange}
+            onChange={handleChange}
             name="caption"
             fullWidth
             label="Photo Caption"
           />
           <Button
-            id="signupSubmit"
+            id="picSubmit"
             align="center"
             type="submit"
             variant="contained"
+            className="robo-text"
             // style={submitStyle}
           >
-            Sign Up
+            Submit
           </Button>
         </form>
       </Paper>
