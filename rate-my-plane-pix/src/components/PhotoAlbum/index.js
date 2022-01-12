@@ -16,12 +16,13 @@ export default function PhotoAlbum({ photos }) {
         })
     }, [])
 
-    const [ like, setLike ] = useState(0)
+    const [ likes, setLike ] = useState(0)
     // const [pLikes, setPLikes] = useState(0)
+
+    
     const increaseLikes = (id, likes) => {
         
         // // let likes = document.querySelector("#like-btn").getAttribute('data-like-id');
-        // likes++;
         
         // console.log(likes, id)
            
@@ -31,7 +32,7 @@ export default function PhotoAlbum({ photos }) {
         }).then((response)=>{
             console.log(response.data)
         });
-        setLike(like => like +1);
+        setLike(likes);
     
         
   
@@ -57,7 +58,7 @@ export default function PhotoAlbum({ photos }) {
                     <img className="pic" src={photo.image} style={{width: '100%'}} alt={photo.caption} />
                     </div>
                     {/* <Grid container justify="flex-end" alignItems="flex-end"> */}
-                        <IconButton key={photo.image} id="like-btn" data-like-id={photo.likes} variant="contained" color="primary" aria-label={`info about `} className='up-vote' onClick={() => increaseLikes(photo.id, photo.likes)}>
+                        <IconButton key={photo.image} id="like-btn" data-like-id={photo.likes} variant="contained" color="primary" aria-label={`info about `} className='up-vote' onClick={() => increaseLikes(photo.id, photo.likes +1)}>
                             <Typography>{photo.likes}</Typography>
                             <ThumbUpOutlinedIcon />
                     </IconButton>

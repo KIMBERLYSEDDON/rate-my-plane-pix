@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+// const db = require
 // app.post('/api/upload', (req, res) => {
 
 //     const picImage = req.body.picImage;
@@ -52,13 +53,15 @@ app.put('/api/like', (req, res) => {
     const id = req.body.id;
     const like = req.body.like;
     const sqlUpdate = 
-    "UPDATE pix SET likes = ? WHERE id = ?";
+    "UPDATE pix SET likes=? WHERE id=?";
 
-    db.query(sqlUpdate, [id, like], (err, result) => {
+    db.query(sqlUpdate, [like, id], (err, result) => {
         if (err){
             console.log(err)
+        } else {
+            console.log(result)
         }
-        console.log(res)
+        
     })
 })
 app.listen(3001, () => {
