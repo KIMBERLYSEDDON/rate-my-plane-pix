@@ -43,7 +43,7 @@ export default function UploadImage() {
       event.preventDefault();
       try {
       Axios.post('http://localhost:3001/api/submit', {...formState}).then(()=>{
-        alert('Successful Submit!')
+        
       });
     } catch (error) {
       console.error(error)

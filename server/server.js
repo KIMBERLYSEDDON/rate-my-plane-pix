@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const { response } = require('express');
 
 const db = mysql.createPool({
     host: 'localhost',
@@ -44,8 +45,21 @@ app.post('/api/submit', (req, res)=>{
     const sqlInsert =
     "INSERT INTO pix (image, caption) VALUES (?,?)";
     db.query(sqlInsert, [ image, caption ], (err, result) => {
-        console.log("ERROR",err)
+        console.log("YAY")
     });
+})
+app.put('/api/like', (req, res) => {
+    const id = req.body.id;
+    const like = req.body.like;
+    const sqlUpdate = 
+    "UPDATE pix SET likes = ? WHERE id = ?";
+
+    db.query(sqlUpdate, [id, like], (err, result) => {
+        if (err){
+            console.log(err)
+        }
+        console.log(res)
+    })
 })
 app.listen(3001, () => {
     console.log("Running on port 3001")

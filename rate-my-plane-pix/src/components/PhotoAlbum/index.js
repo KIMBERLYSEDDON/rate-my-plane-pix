@@ -9,22 +9,41 @@ import Axios from 'axios';
 
 
 export default function PhotoAlbum({ photos }) {
+    const [photoAlbum, setPhotoAlbum] = useState([])
+    useEffect(()=>{
+        Axios.get('http://localhost:3001/api/get').then((response)=>{
+            setPhotoAlbum(response.data)
+        })
+    }, [])
 
-    const [ likes, setLikes ] = useState(0)
-    function increaseLikes(pic) {
+    const [ like, setLike ] = useState(0)
+    // const [pLikes, setPLikes] = useState(0)
+    const increaseLikes = (id, likes) => {
         
-        setLikes(prevLikes => prevLikes + 1);
-        let like = pic;
-        console.log("THIS", like)
+        // // let likes = document.querySelector("#like-btn").getAttribute('data-like-id');
+        // likes++;
         
-    }
+        // console.log(likes, id)
+           
+        Axios.put("http://localhost:3001/api/like", {
+            id: id,
+            like: likes,
+        }).then((response)=>{
+            console.log(response.data)
+        });
+        setLike(like => like +1);
+    
+        
+  
+        
+    };
     // const classes = useStyles();
     const [model, setModel] = useState(false);
     const [tempImgSrc, setTempImg] = useState('');
     const getImg = (source) => {
         setTempImg(source);
-        setModel(true);
-    }
+        setModel(true); 
+    };
     return (
         <div id="photo-album">
         <div className={model? "model open" : "model"}>
@@ -32,14 +51,14 @@ export default function PhotoAlbum({ photos }) {
             <CloseIcon onClick={() => setModel(false)} />
         </div>
         <div className="album">
-            {photos.map((photo, index)=> {
+            {photoAlbum.map((photo)=> {
                 return <div className="pic">
-                    <div key={index} onClick={() => getImg(photo.source)}>
-                    <img className="pic" src={photo.source} style={{width: '100%'}} alt="pic" />
+                    <div key={photo.id} onClick={() => getImg(photo.image)}>
+                    <img className="pic" src={photo.image} style={{width: '100%'}} alt={photo.caption} />
                     </div>
                     {/* <Grid container justify="flex-end" alignItems="flex-end"> */}
-                        <IconButton key={photo.source} id="like-btn" variant="contained" color="primary" aria-label={`info about `} className='up-vote' onClick={() => increaseLikes(photo.source)}>
-                            <Typography>{likes}</Typography>
+                        <IconButton key={photo.image} id="like-btn" data-like-id={photo.likes} variant="contained" color="primary" aria-label={`info about `} className='up-vote' onClick={() => increaseLikes(photo.id, photo.likes)}>
+                            <Typography>{photo.likes}</Typography>
                             <ThumbUpOutlinedIcon />
                     </IconButton>
                 {/* </Grid> */}
