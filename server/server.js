@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // })
 app.get('/api/get', (req, res)=> {
     const sqlSelect = 
-    "SELECT * FROM pix";
+    "SELECT * FROM pix ORDER BY likes DESC";
     db.query(sqlSelect, (err, result)=>{
         res.send(result)
     })
