@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const { response } = require('express');
 
+const PORT = process.env.PORT || 3001;
+
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -64,6 +66,6 @@ app.put('/api/like', (req, res) => {
         
     })
 })
-app.listen(3001, () => {
+app.listen(PORT, () => {
     console.log("Running on port 3001")
 });

@@ -28,9 +28,7 @@ export default function UploadImage() {
             ...formState,
           image: imageUploading
       })
-      }) 
-  
-       
+      })
     };
     const handleChange = (event) => {
       const { name, value } = event.target;
@@ -45,6 +43,7 @@ export default function UploadImage() {
       Axios.post('http://localhost:3001/api/submit', {...formState}).then(()=>{
         
       });
+      window.location.reload(true);
     } catch (error) {
       console.error(error)
     }
